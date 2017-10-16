@@ -25,6 +25,8 @@ Route::group(['middleware' => 'auth:api'], function(){
         Route::post('/', 'ActorController@store');
         // Get all actors.
         Route::get('/', 'ActorController@index');
+        // Get latest actors.
+        Route::get('/latest', 'ActorController@getLatest');
         // Get certain actor.
         Route::get('/{actor}', 'ActorController@show');
         // Update an actor.
@@ -49,6 +51,8 @@ Route::group(['middleware' => 'auth:api'], function(){
         Route::post('/', 'MovieController@store');
         // Get all movies.
         Route::get('/', 'MovieController@index');
+        // Get latest movies.
+        Route::get('/latest', 'MovieController@getLatest');
         // Get certain movie.
         Route::get('/{movie}', 'MovieController@show');
         // Update a movie.

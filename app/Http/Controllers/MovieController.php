@@ -42,6 +42,21 @@ class MovieController extends Controller
     }
 
     /**
+     * Get the latest movies.
+     *
+     * @param Request $r
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
+     */
+    public function getLatest(Request $r)
+    {
+        $limit = $r->has('limit') ? $r->input('limit') : 3;
+        $fractal = new Manager();
+        $movie = Movie::orderBy('created_at', 'desc')->limit($limit)->get();
+        $response = new Collection($movie, new MovieTransformer());
+        return response($fractal->createData($response)->toJson(), 200);
+    }
+
+    /**
      * Creates a movie.
      *
      * @param Request $r

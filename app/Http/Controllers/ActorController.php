@@ -25,9 +25,32 @@ class ActorController extends Controller
         return response($fractal->createData($resource)->toJson(), 200);
     }
 
+    /**
+     * Returns a specific actor.
+     *
+     * @param Actor $actor
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
+     */
     public function show(Actor $actor)
     {
-        return $actor;
+        $fractal = new Manager();
+        $response = new Item($actor, new ActorTransformer());
+        return response($fractal->createData($response)->toJson(), 200);
+    }
+
+    /**
+     * Get the latest actors.
+     *
+     * @param Request $r
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
+     */
+    public function getLatest(Request $r)
+    {
+        $limit = $r->has('limit') ? $r->input('limit') : 3;
+        $fractal = new Manager();
+        $actor = Actor::orderBy('created_at', 'desc')->limit($limit)->get();
+        $response = new Collection($actor, new ActorTransformer());
+        return response($fractal->createData($response)->toJson(), 200);
     }
 
     /**
