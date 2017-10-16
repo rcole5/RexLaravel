@@ -1,0 +1,368 @@
+FORMAT: 1A
+HOST: http://polls.apiblueprint.org/
+
+# RexBack
+
+A simple API that you can access Movies, Actors, and their Genres with.
+
+## Actors [/actor]
+
+### List All Actors [GET]
+
+Get All existing actors.
+
++ Request (application/json)
+
+        + Headers
+                Authorization: Bearer {api_token}
+
++ Response 200 (application/json)
+
+    + Body
+    
+        [
+            {
+                "id": 1,
+                "name": "John Smith",
+                "dob": "1990-01-20",
+                "age": 27,
+                "image": null
+            },
+            {
+                "id": 2,
+                "name": "Smith John",
+                "dob": "1995-03-17",
+                "age": 22,
+                "image": null
+            }
+        ]
+
+### Create a New Actor [POST]
+
+Create a new actor.
++ Request (application/json)
+
+    + Headers
+            Authorization: Bearer {api_token}
+
+    + Body
+    
+        {
+            "name": "John Smith",
+            "dob": "1990-01-20",
+            "bio": "John Smith is an award winning actor",
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+            Location: /actor/1
+
+    + Body
+    
+            {
+               "data": {
+                    "id": 1,
+                    "name": "John Smith",
+                    "dob": "1990-01-20",
+                    "bio": "John Smith is an award winning actor",
+                    "image": null
+               }
+            }
+            
+## Actor [/actor/{id}]
+
+### Get an Actor [GET]
+
+Get an existing Actor.
+
++ Request (application/json)
+
+    + Headers
+            Authorization: Bearer {api_token}
+
++ Response 201 (application/json)
+
+    + Body
+    
+            {
+               "data": {
+                    "id": 1,
+                    "name": "John Smith",
+                    "dob": "1990-01-20",
+                    "bio": "John Smith is an award winning actor",
+                    "image": null
+               }
+            }
+
+### Update an Actor [PUT]
+
+Update an existing Actor with new information.
+
++ Request (application/json)
+
+    + Headers
+            Authorization: Bearer {api_token}
+    
+    + Body
+        {
+            "name": "John Smith",
+            "dob": "1990-01-20",
+            "bio": "John Smith is an award winning actor",
+        }
+    
++ Response 201 (application/json)
+
+    + Headers
+        
+            Location: /actor/1
+            
+    + Body
+            
+            {
+                "data": {
+                    "id": 1
+                    "name": "John Smith",
+                    "dob": "1990-01-20",
+                    "bio": "John Smith is an award winning actor",
+                    "image": null
+                }
+            }
+            
+### Delete an Actor [DELETE]
+
+Delete an existing Actor.
+
++ Request (application/json)
+
+    + Headers
+            Authorization: Bearer {api_token}
+            
++ Response 204 (application/json)
+
+## Movies [/movie]
+### Get all movies [GET]
+Get all existing Movies.
+
++ Request (application/json)
+
+    + Headers
+            Authorization: Bearer {api_token}
+            
++ Response 200 (application/json)
+
+    + Body
+        
+            {
+                "data": [
+                 {
+                    "id": 1,
+                    "Title": "Movie Title",
+                    "rating": 5.55,
+                    "description: "Some good movie about something",
+                    "image": "http://test.com/image.jpg"
+                 },
+                 {
+                    "id": 2,
+                    "Title": "Another Great Movie",
+                    "Rating": 8.00,
+                    "description": "One of the best movies.",
+                    "image": null
+                 }
+                ]
+            }
+
+### Create a new movie [POST]
+Create a new Movie.
+
++ Request (application/json)
+
+    + Headers
+    
+            Authorization: Bearer {api_token}
+            
+    + Body
+            {
+                "title": "Movie Title,
+                "rating": 5.68,
+                "description: "A very interesting movie.",
+                "image": "http://url.com/image.jpg"
+            }
+
++ Response 201 (application/json)
+    
+    + Body
+            {
+                "data": {
+                    "id": 1,
+                    "title": "Movie Title",
+                    "rating": 5.68,
+                    "description": "A very interesting movie.",
+                    "image": "http://url.com/image.jpg"
+                }
+            }
+
+## Movie [/movie/{id}]
+
+### Get a movie [GET]
+Get an existing Movie.
+
++ Request (application/json)
+
+    + Headers
+            Authorization: Bearer {api_token}
+            
++ Response 200 (application/json)
+
+    +Body
+        {
+             "data": {
+                    "id": 1,
+                    "title": "Movie Title",
+                    "rating": 5.68,
+                    "description": "A very interesting movie.",
+                    "image": "http://url.com/image.jpg"
+                }
+        }
+
+### Update a movie [PUT]
+Update an existing Movie.
+
++ Request (application/json)
+
+    + Headers
+    
+            Authorization: Bearer {api_token}
+            
+    + Body
+            {
+                "title": "Movie Title,
+                "rating": 5.68,
+                "description: "A very interesting movie.",
+                "image": "http://url.com/image.jpg"
+            }
+
++ Response 201 (application/json)
+    
+    + Body
+            {
+                "data": {
+                    "id": 1,
+                    "title": "Movie Title",
+                    "rating": 5.68,
+                    "description": "A very interesting movie.",
+                    "image": "http://url.com/image.jpg"
+                }
+            }
+
+### Delete a movie [DELETE]
+Delete an existing Movie.
+
++ Request (application/json)
+
+    + Headers
+            Authorization: Bearer {api_token}
+            
++ Response 204 (application/json)
+
+## Genres [/genre]
+
+### Get all genres [GET]
+Get all existing Genres.
+
++ Request (application/json)
+
+        + Headers
+                Authorization: Bearer {api_token}
+                
++ Response 200 (appliation/json)
+
+        + Body
+                {
+                    "data": [
+                        {
+                            "id": 1,
+                            "genre": "action"
+                        },
+                        {
+                            "id": 2,
+                            "genre": "sci-fi"
+                        }
+                    ]
+                }
+
+### Create new genre [POST]
+Create a new Genre.
+
++ Request (application/json)
+
+        + Headers
+                Authorization: Bearer {api_token}
+                
+        + body
+                {
+                    "genre": "action"
+                }
+                
++ Response 201 (application/json)
+
+        + body
+                {
+                    "data": {
+                        "id": 1,
+                        "genre": "action"
+                    }
+                }
+
+## Genre [/genre/{id}]
+
+### Get a genre [GET]
+Get an existing genre.
+
++ Request (application/json)
+
+        + Headers
+                Authorization: Bearer {api_token}
+
++ Response 201 (application/json)
+
+        + body
+                {
+                    "data": {
+                        "id": 1,
+                        "genre": "action"
+                    }
+                }
+
+### Update a genre [PUT]
+Update an existing genre.
+
++ Request (application/json)
+
+        + Headers
+                Authorization: Bearer {api_token}
+                
+        + body
+                {
+                    "genre": "action"
+                }
+                
++ Response 201 (application/json)
+
+        + body
+                {
+                    "data": {
+                        "id": 1,
+                        "genre": "action"
+                    }
+                }
+
+### Delete a genre [DELETE]
+Delete an existing genre.
+
++ Request (application/json)
+
+        + Headers
+                Authorization: Bearer {api_token}
+                
++ Response 204 (application/json)
