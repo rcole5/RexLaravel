@@ -81,4 +81,21 @@ class GenreController extends Controller
         $genre->delete();
         return response()->json(null, 204);
     }
+
+    public function movies(Genre $genre)
+    {
+        $fractal = new Manager();
+        $resource = new Collection($genre->movies, function($movie) {
+           return [
+               'id' => (int) $movie->id,
+               'title' => $movie->title,
+               'description' => $movie->description,
+               'rating' => $movie->rating,
+               'image' => $movie->image,
+           ];
+        });
+        return response($fractal->createData($resource)->toJson(), 200);
+//        return response($genre->movies, 200);
+//        return $genre->movies;
+    }
 }

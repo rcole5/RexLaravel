@@ -93,6 +93,9 @@ Route::group(['middleware' => 'auth:api'], function(){
         Route::put('/{genre}', 'GenreController@update');
         // Delete a genre.
         Route::delete('/{genre}', 'GenreController@delete');
+
+        /* MOVIES IN GENRE */
+        Route::get('/{genre}/movies', 'GenreController@movies');
     });
 });
 
