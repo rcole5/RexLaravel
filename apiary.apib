@@ -13,8 +13,10 @@ Get All existing actors.
 
 + Request (application/json)
 
-        + Headers
-                Authorization: Bearer {api_token}
+    + Headers
+                {    
+                    Authorization: Bearer {api_token}
+                }
 
 + Response 200 (application/json)
 
@@ -182,6 +184,7 @@ Create a new Movie.
             Authorization: Bearer {api_token}
             
     + Body
+    
             {
                 "title": "Movie Title,
                 "rating": 5.68,
@@ -192,6 +195,7 @@ Create a new Movie.
 + Response 201 (application/json)
     
     + Body
+    
             {
                 "data": {
                     "id": 1,
@@ -214,7 +218,8 @@ Get an existing Movie.
             
 + Response 200 (application/json)
 
-    +Body
+    + Body
+    
         {
              "data": {
                     "id": 1,
@@ -272,12 +277,12 @@ Get all existing Genres.
 
 + Request (application/json)
 
-        + Headers
+    + Headers
                 Authorization: Bearer {api_token}
                 
 + Response 200 (appliation/json)
 
-        + Body
+    + Body
                 {
                     "data": [
                         {
@@ -296,17 +301,17 @@ Create a new Genre.
 
 + Request (application/json)
 
-        + Headers
+    + Headers
                 Authorization: Bearer {api_token}
                 
-        + body
+    + body
                 {
                     "genre": "action"
                 }
                 
 + Response 201 (application/json)
 
-        + body
+    + body
                 {
                     "data": {
                         "id": 1,
@@ -321,12 +326,12 @@ Get an existing genre.
 
 + Request (application/json)
 
-        + Headers
+    + Headers
                 Authorization: Bearer {api_token}
 
 + Response 201 (application/json)
 
-        + body
+    + body
                 {
                     "data": {
                         "id": 1,
@@ -339,17 +344,20 @@ Update an existing genre.
 
 + Request (application/json)
 
-        + Headers
+    + Headers
+        
                 Authorization: Bearer {api_token}
                 
-        + body
+    + body
+        
                 {
                     "genre": "action"
                 }
                 
 + Response 201 (application/json)
 
-        + body
+    + body
+        
                 {
                     "data": {
                         "id": 1,
@@ -362,7 +370,7 @@ Delete an existing genre.
 
 + Request (application/json)
 
-        + Headers
+    + Headers
                 Authorization: Bearer {api_token}
                 
 + Response 204 (application/json)
