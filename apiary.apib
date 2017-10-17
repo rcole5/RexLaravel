@@ -364,7 +364,69 @@ Update an existing genre.
                         "genre": "action"
                     }
                 }
+                
+### Get all movies in a genre.
+Get all movies in a genre.
 
++ Request (application/json)
+
+    + Headers
+        
+                Authorization: Bearer {api_token}
+    
++ Response 200 (application/json)
+
+    + body
+            {
+                "data": [
+                 {
+                    "id": 1,
+                    "title": "A good movie",
+                    "description": "it's a really good movie",
+                    "rating": 7.88,
+                    "image": "http://test.com/image.jpg"
+                 },
+                 {
+                    "id": 2,
+                    "title": "A better movie",
+                    "description": "This movie is better than that previous one.",
+                    "rating": 9.01
+                    "image": "http://test.com/image2.jpg"
+                 }
+                ]
+            }
+        
+### Get all actors in a genre.
+Get all actors in a genre
+
++ Request (application/json)
+
+    + Headers
+        
+                Authorization: Bearer {api_token}
+                
++ Response 200 (application/json)
+
+    + body
+            {
+                "data": [
+                 {
+                    "id": 1,
+                    "name": "John Smith",
+                    "dob": "1990-03-03",
+                    "age": 27
+                    "bio": "This is a bio",
+                 },
+                 {
+                    "id": 2,
+                    "name": "Smith John",
+                    "dob": "1950-01-10",
+                    "age": 67,
+                    "bio": "This is another bio",
+                 }
+                ]
+            }
+        
 ### Delete a genre [DELETE]
 Delete an existing genre.
 
