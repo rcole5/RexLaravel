@@ -25,7 +25,6 @@ class MovieGenreController extends Controller
     public function index(Movie $movie)
     {
         $fractal = new Manager();
-//        $resource = new Collection($movie->genres[0], new MovieGenreTransformer());
         $resource = new Collection($movie->genres, function ($genres) {
             return [
                 'id' => (int)$genres['id'],

@@ -62,11 +62,7 @@ class ActorGenreTest extends TestCase
         $actor = factory(Actor::class)->create();
         $genre = factory(Genre::class)->create(['name' => 'action']);
 
-        $payload = [
-            'genre_id' => $genre->id
-        ];
-
-        $this->json('POST', '/api/actor/' . $actor->id . '/genre/', $payload, $headers)
+        $this->json('POST', '/api/actor/' . $actor->id . '/genre/' . $genre->id, [], $headers)
             ->assertStatus(201)
             ->assertJson([
                 'data' => [
@@ -88,7 +84,7 @@ class ActorGenreTest extends TestCase
         $genre = factory(Genre::class)->create(['name' => 'action']);
         $genre2 = factory(Genre::class)->create(['name' => 'sci-fi']);
 
-        $this->json('POST', '/api/actor/' . $actor->id . '/genre/' . $genre->id, null, $headers)
+        $this->json('POST', '/api/actor/' . $actor->id . '/genre/' . $genre->id, [], $headers)
             ->assertStatus(201)
             ->assertJson([
                 'data' => [
@@ -98,7 +94,7 @@ class ActorGenreTest extends TestCase
                 ],
             ]);
 
-        $this->json('POST', '/api/actor/' . $actor->id . '/genre/' . $genre2->id, null, $headers)
+        $this->json('POST', '/api/actor/' . $actor->id . '/genre/' . $genre2->id, [], $headers)
             ->assertStatus(201)
             ->assertJson([
                 'data' => [
@@ -125,12 +121,8 @@ class ActorGenreTest extends TestCase
         $actor = factory(Actor::class)->create();
         $genre = factory(Genre::class)->create(['name' => 'action']);
 
-        $payload = [
-            'genre_id' => $genre->id
-        ];
-
         // Add genre to delete.
-        $this->json('POST', '/api/actor/' . $actor->id . '/genre/', $payload, $headers)
+        $this->json('POST', '/api/actor/' . $actor->id . '/genre/' . $genre->id, [], $headers)
             ->assertStatus(201);
 
         // Delete the genre.
@@ -154,19 +146,12 @@ class ActorGenreTest extends TestCase
         $genre = factory(Genre::class)->create(['name' => 'action']);
         $genre2 = factory(Genre::class)->create(['name' => 'sci-fi']);
 
-        $payload = [
-            'genre_id' => $genre->id
-        ];
-
-        $payload2 = [
-            'genre_id' => $genre2->id
-        ];
 
         // Add genre to delete.
-        $this->json('POST', '/api/actor/' . $actor->id . '/genre/', $payload, $headers)
+        $this->json('POST', '/api/actor/' . $actor->id . '/genre/' . $genre->id, [], $headers)
             ->assertStatus(201);
 
-        $this->json('POST', '/api/actor/' . $actor->id . '/genre/', $payload2, $headers)
+        $this->json('POST', '/api/actor/' . $actor->id . '/genre/' . $genre2->id, [], $headers)
             ->assertStatus(201);
 
         // Delete the genre.

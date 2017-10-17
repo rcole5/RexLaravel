@@ -144,7 +144,9 @@ class ActorTest extends TestCase
         $this->json('GET', '/api/actor/' . $actor->id, [], $headers)
             ->assertStatus(200)
             ->assertJson([
-                'name' => 'Test Show'
+                'data' => [
+                    'name' => 'Test Show'
+                ]
             ]);
     }
 }

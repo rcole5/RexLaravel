@@ -12,14 +12,14 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // $this->call(UsersTableSeeder::class);
-        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+//        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         $this->call(ActorsTableSeeder::class);
         $this->call(GenreSeeder::class);
         $this->call(MoviesTableSeeder::class);
         $this->call(ActorGenresTableSeeder::class);
         $this->call(ActorMoviesTableSeeder::class);
         $this->call(MovieGenresSeeder::class);
-        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+//        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
     }
 }

@@ -13,9 +13,9 @@ use Illuminate\Http\Request;
 |
 */
 
-header('Access-Control-Allow-Origin:  *');
-header('Access-Control-Allow-Methods:  POST, GET, OPTIONS, PUT, DELETE');
-header('Access-Control-Allow-Headers:  Content-Type, X-Auth-Token, Origin, Authorization');
+//header('Access-Control-Allow-Origin:  *');
+//header('Access-Control-Allow-Methods:  POST, GET, OPTIONS, PUT, DELETE');
+//header('Access-Control-Allow-Headers:  Content-Type, X-Auth-Token, Origin, Authorization');
 
 // Requires API token to access.
 Route::group(['middleware' => 'auth:api'], function(){
@@ -38,7 +38,7 @@ Route::group(['middleware' => 'auth:api'], function(){
         // Return all genres.
         Route::get('/{actor}/genre', 'ActorGenreController@index');
         // Add genre to actor.
-        Route::post('/{actor}/genre', 'ActorGenreController@create');
+        Route::post('/{actor}/genre/{genre}', 'ActorGenreController@create');
         // Remove genre from actor.
         Route::delete('/{actor}/genre/{genre}', 'ActorGenreController@delete');
         // Remove all genres from actor.
