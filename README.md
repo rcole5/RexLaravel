@@ -1,5 +1,7 @@
 # Rex Backend Laravel Test
 
+Documentation at http://docs.rexback.apiary.io/
+
 Deploying
 ---------
 
