@@ -82,6 +82,12 @@ class GenreController extends Controller
         return response()->json(null, 204);
     }
 
+    /**
+     * Get all Movies in a genre.
+     *
+     * @param Genre $genre
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
+     */
     public function movies(Genre $genre)
     {
         $fractal = new Manager();
@@ -95,7 +101,26 @@ class GenreController extends Controller
            ];
         });
         return response($fractal->createData($resource)->toJson(), 200);
-//        return response($genre->movies, 200);
-//        return $genre->movies;
+    }
+
+    /**
+     * Get all Actors in a genre.
+     *
+     * @param Genre $genre
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
+     */
+    public function actors(Genre $genre)
+    {
+        $fractal = new Manager();
+        $resource = new Collection($genre->actors, function($actor) {
+           return [
+               'id' => (int) $actor->id,
+               'name' => $actor->name,
+               'bio' => $actor->bio,
+               'image' => $actor->image,
+               'dob' => $actor->dob,
+           ];
+        });
+        return response($fractal->createData($resource)->toJson(), 200);
     }
 }

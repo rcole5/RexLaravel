@@ -23,6 +23,9 @@ class Genre extends Model
 
 	public function actors()
 	{
-		return $this->hasMany(\App\Models\ActorGenre::class, 'actor_id');
+		return $this->belongsToMany(\App\Models\Actor::class,
+        'actor_genres',
+        'genre_id',
+        'actor_id');
 	}
 }

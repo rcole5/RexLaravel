@@ -96,6 +96,9 @@ Route::group(['middleware' => 'auth:api'], function(){
 
         /* MOVIES IN GENRE */
         Route::get('/{genre}/movies', 'GenreController@movies');
+
+        /* ACTORS IN GENRE */
+        Route::get('/{genre}/actors', 'GenreController@actors');
     });
 });
 
