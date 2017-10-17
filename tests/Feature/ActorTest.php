@@ -45,9 +45,7 @@ class ActorTest extends TestCase
         $payload = [
             'name' => 'Test',
             'dob' => '1990-03-03',
-            'age' => 20,
             'bio' => 'this is a test bio.',
-            'image' => null,
         ];
 
         $this->json('post', '/api/actor', $payload, $headers)
@@ -56,9 +54,7 @@ class ActorTest extends TestCase
                 'data' => [
                     'name' => 'Test',
                     'dob' => '1990-03-03',
-                    'age' => 20,
                     'bio' => 'this is a test bio.',
-                    'image' => null,
                 ],
             ]);
     }

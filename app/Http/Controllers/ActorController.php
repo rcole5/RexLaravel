@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Transformers\ActorTransformer;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use \App\Models\Actor;
 use League\Fractal\Manager;
@@ -61,8 +62,10 @@ class ActorController extends Controller
      */
     public function store(Request $r)
     {
+        $arr = $r->all();
+        $arr['age'] = Carbon::parse($r->input('dob'))->age;
         $fractal = new Manager();
-        $actor = Actor::create($r->all());
+        $actor = Actor::create($arr);
         $resource = new Item($actor, new ActorTransformer());
         return response($fractal->createData($resource)->toJson(), 201);
     }
